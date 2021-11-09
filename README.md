@@ -1,4 +1,4 @@
-# Supply-Chain-Design-with-Economies-of-Scale (WIP)
+# Optimal Supply Chain Design with Economies of Scale (WIP)
 
 The problem presented in this repository is one of my Ph.D. works. The goal is to optimize a large-size classical production-distribution types supply chain network with economies of scale to represent production, handling and transportation operations. In practice, the economies of scale are modeled using concave functions, which makes the resultant model a non-convex optimization problem.
 
