@@ -8,6 +8,8 @@ Therefore, to overcome this challenge, we provide a (spatial) Branch-and-Bound a
 
 The original algorithm is built-in C language using structures (for user-defined data types) to represent data at every node of the Branch-and-Bound tree. This repository aims to provide a python implementation of the algorithm using classes and to use the parallel computing feature of python to improve the computation time of the algorithm.
 
+Finally, do check Sensitivity analysis section on page 26 to understand the impact of considering concave costs in supply chain design and for managerial insights.
+
 NOTE: The repository is still a work-in-progress, and the paper is under the second round of revision. For any specific detail, kindly reach me at aditya9vt@gmail.com.
 
 See 'Additional Informations' file for details on required input files and steps to run the algorithm
