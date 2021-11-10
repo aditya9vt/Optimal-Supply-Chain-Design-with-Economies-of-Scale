@@ -7,9 +7,9 @@ Created on Mon Nov  9 23:37:38 2020
 
 # Data Definition File to declare data variables to be global
 def init():
+    global V1 # Number of potential plants
+    global V2 # Number of potential warehouses
     global I # Number of customers
-    global V1 # Number of potential warehouses
-    global V2 # Number of potential plants
         
     global Cp, Fp, hp # Plant capacities, fixed costs and production costs    
     global Cd, Fd, hd # DC capacities, fixed costs and handling costs    
@@ -17,9 +17,14 @@ def init():
     global h2 # DC to customer arcs transportation costs    
     global D # Customer demand
     
-    global lambdaP, lambdaD, lambda1, lambda2 
-    # Concavity factors (level of Economies of scale) on plants, DC, 
-    # plant to DC arcs, DC to DC arcs, and DC to customer arcs, respectively
+    global lambdaP, lambdaD, lambda1, lambda2 # Concavity factors (level of Economies of scale) 
+    # on plants, DC, plant to DC arcs, DC to DC arcs, and DC to customer arcs, respectively
+    
+    global pos_z1, pos_v1, pos_x1, pos_z2, pos_v2, pos_x2 #positions for variables in 
+    # a solution vector xCN and xBest
+    
+    global xCN, xBest # Vecctors to save solution of current node and best solution
+    global LB_Best, UB_Best # Best lower and upper bound values
     
 # To save information of every node in ListNodes list  
 class Nodes():

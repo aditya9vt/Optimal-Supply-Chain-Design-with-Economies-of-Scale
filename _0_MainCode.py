@@ -26,17 +26,15 @@ if __name__ == '__main__':
    
     arrayFinal = [0 for i in range(len(array))]
     for n in range(len(array)):
-        arrayFinal[n] = float(array[n])
+        arrayFinal[n] = array[n]
     
-    start_Pno = int(arrayFinal[0])
-    end_Pno   = int(arrayFinal[1])
-    g.lambdaP = arrayFinal[2]
-    g.lambdaD = arrayFinal[3]
-    g.lambda1 = arrayFinal[4]
-    g.lambda2 = arrayFinal[5]    
+    start_Pno = int(arrayFinal[1])
+    end_Pno   = int(arrayFinal[3])
+    g.lambdaP = float(arrayFinal[5])
+    g.lambdaD = float(arrayFinal[7])
+    g.lambda1 = float(arrayFinal[9])
+    g.lambda2 = float(arrayFinal[11])    
     
-    a = 100.0
-    print("Value of a: %f" % (a))
     ################ For now lets run problem instances sequentially.
     # Later we will figure out how to run all the instances in parallel using
     # parallel computing capabilities of Python
@@ -51,7 +49,7 @@ if __name__ == '__main__':
         
         ObjValue = mf._0_MainFunction(ListNodes)
                    
-        print("END OF Pno: %d with Supply Chain Cost: %f"%(pno, ObjValue))
+        print("END OF Pno: %d with Supply Chain Cost: %f"%(pno, g.UB_Best))
     
     print("END OF SCRIPT")
     

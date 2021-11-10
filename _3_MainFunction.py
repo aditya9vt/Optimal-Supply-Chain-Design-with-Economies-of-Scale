@@ -8,6 +8,7 @@ import _4_RootNodeProblem as RN
 import _0_MainCode as mc
 import time
 import csv
+import copy
 
 # BEGIN: MAIN FUNCTION DEFINITION
 def _0_MainFunction(ListNodes):
@@ -30,24 +31,23 @@ def _0_MainFunction(ListNodes):
     
     # Find the index in the list with lowest lower bound value
     index = min(range(len(ListNodes)), key=lambda i: ListNodes[i].LB)
-    print("Lowest Index: %d" % (index))
-    print("Lowest LB: %f" % (ListNodes[index].LB))
-    print("TN of node with Lowest LB: %f" % (ListNodes[index].TN))
-    print("UB of node with Lowest LB: %f" % (ListNodes[index].UB))    
-    
+        
     del ListNodes[index]
-    
-    print(len(ListNodes))
     
     ################ START BRANCH AND BOUND ALGORITHM
     # Step 1: Solve root node of the model. (For root node, initial limits on 
     # concave variables are already set in _2_ReadInputData script)
-    RN._4_SolveRotNode()
+    LB_CN, UB_CN, g.xCN = RN._4_SolveRotNode()
     
+    # Update values of 
+    g.LB_Best, g.UB_Best = LB_CN, UB_CN
+    g.xBest = copy.deepcopy(g.xCN)
+    
+    # Step 2: Call Deviation Function
     end = time.time() 
     time_Elapsed = end - start
 
-    
+        
     print("Elapsed Time (secs): %.2f" % (time_Elapsed))
     print("END OF MAIN FUNCTION")
-    return ObjValue
+    return 0.0
