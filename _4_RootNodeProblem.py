@@ -11,7 +11,7 @@ import copy
 from mip import Model, xsum, minimize, BINARY
 from collections import OrderedDict
 
-def _4_SolveRotNode():
+def _4_SolveRootNode():
     
     time_Elapsed_RN, ObjValueRN = 0.0, 0.0
     start = time.time()
@@ -21,7 +21,7 @@ def _4_SolveRotNode():
     for k in range(g.V1):
         f_Lp        = g.hp[k]*pow(g.Lp[k], g.lambdaP)
         f_Up        = g.hp[k]*pow(g.Up[k], g.lambdaP)
-        g.mp[k]     = (f_Up - f_Lp) / (g.Lp[k]- g.Up[k])
+        g.mp[k]     = (f_Up - f_Lp) / (g.Up[k]- g.Lp[k])
         g.constp[k] = f_Lp - g.mp[k]*g.Lp[k]
             
     # 2. At DCs
@@ -154,7 +154,7 @@ def _4_SolveRotNode():
             UB_RN += g.h2[j][i] * pow(x2[j, i].x, g.lambda2)
             SolVector[g.pos_x2[j][i]] = x2[j, i].x
     
-    # print("Upper Bound At Root Node: %f"% (UB_RN))
-    # print("Elapsed Time ROOT NODE (secs): %.2f" % (time_Elapsed_RN))    
+    print("Lower and Upper Bounds At Root Node are: %.2f and %.2f"% (LB_RN, UB_RN))
+    print("Elapsed Time ROOT NODE (secs): %.2f" % (time_Elapsed_RN))    
     
     return LB_RN, UB_RN, SolVector

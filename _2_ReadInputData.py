@@ -81,8 +81,7 @@ def _1_ReadData(pno):
 
     
     ################ Initialize lower and uppers limits on variables in concave functions
-    ################ This will used as first input to the root node problem of the BB tree
-    
+    ################ This will used as first input to the root node problem of the BB tree    
     # 1. At plants
     g.Lp = [0 for k in range(g.V1)]
     g.Up = [0 for k in range(g.V1)]
@@ -113,17 +112,41 @@ def _1_ReadData(pno):
             g.L2[j][i] = 0
             g.U2[j][i] = min(g.Cd[j], g.D[i])
     
+    ################ Limits and solutions of the node with lowest lower bound and current node    
+    # 1. At plants
+    g.Lp_LowestLB = [0 for k in range(g.V1)]
+    g.Up_LowestLB = [0 for k in range(g.V1)]
+    g.Lp_CN       = [0 for k in range(g.V1)]
+    g.Up_CN       = [0 for k in range(g.V1)]
+        
+    # 2. At DCs
+    g.Ld_LowestLB = [0 for j in range(g.V2)]
+    g.Ud_LowestLB = [0 for j in range(g.V2)]
+    g.Ld_CN       = [0 for j in range(g.V2)]
+    g.Ud_CN       = [0 for j in range(g.V2)]
+        
+    # 3. On Arcs from Plants to DC
+    g.L1_LowestLB = [[0 for j in range(g.V2)] for k in range(g.V1)]
+    g.U1_LowestLB = [[0 for j in range(g.V2)] for k in range(g.V1)]
+    g.L1_CN       = [[0 for j in range(g.V2)] for k in range(g.V1)]
+    g.U1_CN       = [[0 for j in range(g.V2)] for k in range(g.V1)]
     
+    # 4. On Arcs from DCs to Customers
+    g.L2_LowestLB = [[0 for i in range(g.I)] for j in range(g.V2)]
+    g.U2_LowestLB = [[0 for i in range(g.I)] for j in range(g.V2)]
+    g.L2_CN       = [[0 for i in range(g.I)] for j in range(g.V2)]
+    g.U2_CN       = [[0 for i in range(g.I)] for j in range(g.V2)]
+            
     ################ Initialize slopes and constants with '0' value
     g.mp     = [0 for k in range(g.V1)]
     g.constp = [0 for k in range(g.V1)]
-
+    
     g.md     = [0 for j in range(g.V2)]
     g.constd = [0 for j in range(g.V2)]
-
+    
     g.m1     = [[0 for j in range(g.V2)] for k in range(g.V1)]
     g.const1 = [[0 for j in range(g.V2)] for k in range(g.V1)]
-
+    
     g.m2     = [[0 for i in range(g.I)] for j in range(g.V2)]
     g.const2 = [[0 for i in range(g.I)] for j in range(g.V2)]
     
@@ -167,5 +190,6 @@ def _1_ReadData(pno):
     
     g.xCN = [-1.0 for s in range(S)]
     g.xBest = [-1.0 for s in range(S)]
+    g.xLowestLB = [-1.0 for s in range(S)]
     
     print("End of DATA READING FUNCTION")

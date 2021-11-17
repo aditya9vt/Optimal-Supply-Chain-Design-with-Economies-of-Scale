@@ -17,7 +17,7 @@ if __name__ == '__main__':
     
     ################ Global initializaton of the data variables
     g.init()    
-    g.LimitsSlopesAndConstants()
+    g.Desired_OptGap = 0.2
     
     ################ Read Input Parameters File
     file_name = 'InputParameters.dat'
